@@ -1,12 +1,25 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
-import { ArrowLeft, MapPin, Building2, Landmark, Camera, Video, Send, CheckCircle2 } from "lucide-react";
+import {
+  ArrowLeft,
+  MapPin,
+  Building2,
+  Landmark,
+  Camera,
+  Video,
+  Send,
+  CheckCircle2,
+} from "lucide-react";
 
 export const Route = createFileRoute("/complain")({
   head: () => ({
     meta: [
       { title: "File a Complaint — ComplainKaro" },
-      { name: "description", content: "File a complaint at local, state or country level. Attach photos and videos as evidence." },
+      {
+        name: "description",
+        content:
+          "File a complaint at local, state or country level. Attach photos and videos as evidence.",
+      },
     ],
   }),
   component: ComplainPage,
@@ -18,7 +31,16 @@ const levels = [
   { id: "country", label: "Country", icon: Landmark, desc: "Ministry · MP" },
 ] as const;
 
-const categories = ["Roads & Potholes", "Water Supply", "Garbage", "Electricity", "Corruption", "Safety", "Healthcare", "Other"];
+const categories = [
+  "Roads & Potholes",
+  "Water Supply",
+  "Garbage",
+  "Electricity",
+  "Corruption",
+  "Safety",
+  "Healthcare",
+  "Other",
+];
 
 function ComplainPage() {
   const [level, setLevel] = useState<(typeof levels)[number]["id"]>("local");
@@ -42,14 +64,26 @@ function ComplainPage() {
         </div>
         <h2 className="mt-4 text-2xl font-extrabold">Complaint filed</h2>
         <p className="mt-2 max-w-xs text-sm text-muted-foreground">
-          Tracking ID <span className="font-mono font-semibold text-foreground">CK-{Math.floor(Math.random() * 90000) + 10000}</span>. You'll get updates in the Voice feed.
+          Tracking ID{" "}
+          <span className="font-mono font-semibold text-foreground">
+            CK-{Math.floor(Math.random() * 90000) + 10000}
+          </span>
+          . You'll get updates in the Voice feed.
         </p>
         <div className="mt-6 flex gap-2">
-          <Link to="/community" className="rounded-full bg-secondary px-5 py-2.5 text-sm font-semibold text-secondary-foreground">
+          <Link
+            to="/community"
+            className="rounded-full bg-secondary px-5 py-2.5 text-sm font-semibold text-secondary-foreground"
+          >
             Open Voice Feed
           </Link>
           <button
-            onClick={() => { setSubmitted(false); setTitle(""); setDetails(""); setFiles([]); }}
+            onClick={() => {
+              setSubmitted(false);
+              setTitle("");
+              setDetails("");
+              setFiles([]);
+            }}
             className="rounded-full border border-border bg-card px-5 py-2.5 text-sm font-semibold"
           >
             File another
@@ -62,12 +96,17 @@ function ComplainPage() {
   return (
     <div className="px-4 pt-6">
       <div className="mb-4 flex items-center gap-3">
-        <Link to="/" className="grid h-9 w-9 place-items-center rounded-full bg-muted">
+        <Link
+          to="/"
+          className="grid h-9 w-9 place-items-center rounded-full bg-muted"
+        >
           <ArrowLeft className="h-4 w-4" />
         </Link>
         <div>
           <h1 className="text-xl font-extrabold">File a complaint</h1>
-          <p className="text-xs text-muted-foreground">Choose level, describe issue, attach proof</p>
+          <p className="text-xs text-muted-foreground">
+            Choose level, describe issue, attach proof
+          </p>
         </div>
       </div>
 
@@ -87,8 +126,14 @@ function ComplainPage() {
                   : "border-border bg-card hover:bg-muted"
               }`}
             >
-              <Icon className={`h-5 w-5 ${active ? "text-primary" : "text-muted-foreground"}`} />
-              <p className={`mt-2 text-sm font-bold ${active ? "text-primary" : ""}`}>{l.label}</p>
+              <Icon
+                className={`h-5 w-5 ${active ? "text-primary" : "text-muted-foreground"}`}
+              />
+              <p
+                className={`mt-2 text-sm font-bold ${active ? "text-primary" : ""}`}
+              >
+                {l.label}
+              </p>
               <p className="text-[10px] text-muted-foreground">{l.desc}</p>
             </button>
           );
@@ -97,7 +142,9 @@ function ComplainPage() {
 
       <form onSubmit={onSubmit} className="mt-5 space-y-4">
         <div>
-          <label className="text-xs font-semibold text-muted-foreground">Category</label>
+          <label className="text-xs font-semibold text-muted-foreground">
+            Category
+          </label>
           <div className="mt-2 flex flex-wrap gap-2">
             {categories.map((c) => (
               <button
@@ -117,7 +164,9 @@ function ComplainPage() {
         </div>
 
         <div>
-          <label className="text-xs font-semibold text-muted-foreground">Title</label>
+          <label className="text-xs font-semibold text-muted-foreground">
+            Title
+          </label>
           <input
             value={title}
             onChange={(e) => setTitle(e.target.value)}
@@ -128,7 +177,9 @@ function ComplainPage() {
         </div>
 
         <div>
-          <label className="text-xs font-semibold text-muted-foreground">Describe the issue</label>
+          <label className="text-xs font-semibold text-muted-foreground">
+            Describe the issue
+          </label>
           <textarea
             value={details}
             onChange={(e) => setDetails(e.target.value)}
@@ -137,11 +188,15 @@ function ComplainPage() {
             rows={5}
             className="mt-1 w-full resize-none rounded-xl border border-border bg-card px-3 py-2.5 text-sm outline-none focus:border-primary"
           />
-          <p className="mt-1 text-right text-[10px] text-muted-foreground">{details.length}/1000</p>
+          <p className="mt-1 text-right text-[10px] text-muted-foreground">
+            {details.length}/1000
+          </p>
         </div>
 
         <div>
-          <label className="text-xs font-semibold text-muted-foreground">Attach evidence</label>
+          <label className="text-xs font-semibold text-muted-foreground">
+            Attach evidence
+          </label>
           <div className="mt-2 grid grid-cols-2 gap-2">
             <label className="flex cursor-pointer items-center gap-2 rounded-xl border border-dashed border-border bg-card p-3 text-sm font-semibold hover:bg-muted">
               <Camera className="h-4 w-4 text-primary" /> Photo
@@ -150,7 +205,9 @@ function ComplainPage() {
                 accept="image/*"
                 multiple
                 className="hidden"
-                onChange={(e) => setFiles((p) => [...p, ...Array.from(e.target.files ?? [])])}
+                onChange={(e) =>
+                  setFiles((p) => [...p, ...Array.from(e.target.files ?? [])])
+                }
               />
             </label>
             <label className="flex cursor-pointer items-center gap-2 rounded-xl border border-dashed border-border bg-card p-3 text-sm font-semibold hover:bg-muted">
@@ -160,12 +217,16 @@ function ComplainPage() {
                 accept="video/*"
                 multiple
                 className="hidden"
-                onChange={(e) => setFiles((p) => [...p, ...Array.from(e.target.files ?? [])])}
+                onChange={(e) =>
+                  setFiles((p) => [...p, ...Array.from(e.target.files ?? [])])
+                }
               />
             </label>
           </div>
           {files.length > 0 && (
-            <p className="mt-2 text-xs text-muted-foreground">{files.length} file(s) attached</p>
+            <p className="mt-2 text-xs text-muted-foreground">
+              {files.length} file(s) attached
+            </p>
           )}
         </div>
 

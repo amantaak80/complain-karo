@@ -1,26 +1,61 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
-import { ArrowLeft, Sparkles, Wand2, MapPin, Building2, Landmark } from "lucide-react";
+import {
+  ArrowLeft,
+  Sparkles,
+  Wand2,
+  MapPin,
+  Building2,
+  Landmark,
+} from "lucide-react";
 
 export const Route = createFileRoute("/quick")({
   head: () => ({
     meta: [
       { title: "Quick Complain — AI triage" },
-      { name: "description", content: "Type once. AI decides if your complaint is local, state or national and routes it to the right authority." },
+      {
+        name: "description",
+        content:
+          "Type once. AI decides if your complaint is local, state or national and routes it to the right authority.",
+      },
     ],
   }),
   component: QuickPage,
 });
 
-type Triage = { level: "Local" | "State" | "Country"; authority: string; reason: string };
+type Triage = {
+  level: "Local" | "State" | "Country";
+  authority: string;
+  reason: string;
+};
 
 function classify(text: string): Triage {
   const t = text.toLowerCase();
-  if (/(modi|parliament|gst|aadhaar|passport|cbi|income tax|railway|highway nh|airport|defence|ministry)/.test(t))
-    return { level: "Country", authority: "Central Ministry / MP", reason: "Issue involves a national-level body or policy." };
-  if (/(state|cm |mla|collector|police station|hospital|board|electricity board|transport|highway sh)/.test(t))
-    return { level: "State", authority: "MLA / District Collector", reason: "Issue falls under state government jurisdiction." };
-  return { level: "Local", authority: "Sarpanch / Ward Officer / RWA", reason: "Issue looks community or municipality scoped." };
+  if (
+    /(modi|parliament|gst|aadhaar|passport|cbi|income tax|railway|highway nh|airport|defence|ministry)/.test(
+      t,
+    )
+  )
+    return {
+      level: "Country",
+      authority: "Central Ministry / MP",
+      reason: "Issue involves a national-level body or policy.",
+    };
+  if (
+    /(state|cm |mla|collector|police station|hospital|board|electricity board|transport|highway sh)/.test(
+      t,
+    )
+  )
+    return {
+      level: "State",
+      authority: "MLA / District Collector",
+      reason: "Issue falls under state government jurisdiction.",
+    };
+  return {
+    level: "Local",
+    authority: "Sarpanch / Ward Officer / RWA",
+    reason: "Issue looks community or municipality scoped.",
+  };
 }
 
 function QuickPage() {
@@ -38,17 +73,27 @@ function QuickPage() {
     }, 900);
   }
 
-  const Icon = result?.level === "Country" ? Landmark : result?.level === "State" ? Building2 : MapPin;
+  const Icon =
+    result?.level === "Country"
+      ? Landmark
+      : result?.level === "State"
+        ? Building2
+        : MapPin;
 
   return (
     <div className="px-4 pt-6">
       <div className="mb-4 flex items-center gap-3">
-        <Link to="/" className="grid h-9 w-9 place-items-center rounded-full bg-muted">
+        <Link
+          to="/"
+          className="grid h-9 w-9 place-items-center rounded-full bg-muted"
+        >
           <ArrowLeft className="h-4 w-4" />
         </Link>
         <div>
           <h1 className="text-xl font-extrabold">Quick Complain</h1>
-          <p className="text-xs text-muted-foreground">Just type. We'll route it.</p>
+          <p className="text-xs text-muted-foreground">
+            Just type. We'll route it.
+          </p>
         </div>
       </div>
 
@@ -60,7 +105,8 @@ function QuickPage() {
           <Sparkles className="h-4 w-4" /> AI Triage
         </div>
         <p className="mt-1 text-sm opacity-95">
-          Describe your complaint in plain Hindi or English. We'll suggest who should handle it.
+          Describe your complaint in plain Hindi or English. We'll suggest who
+          should handle it.
         </p>
       </div>
 
@@ -89,17 +135,23 @@ function QuickPage() {
               <Icon className="h-6 w-6" />
             </div>
             <div>
-              <p className="text-[11px] font-semibold uppercase tracking-widest text-muted-foreground">Suggested level</p>
+              <p className="text-[11px] font-semibold uppercase tracking-widest text-muted-foreground">
+                Suggested level
+              </p>
               <p className="text-lg font-extrabold">{result.level}</p>
             </div>
           </div>
           <div className="space-y-3 p-4">
             <div>
-              <p className="text-[11px] font-semibold uppercase tracking-widest text-muted-foreground">Route to</p>
+              <p className="text-[11px] font-semibold uppercase tracking-widest text-muted-foreground">
+                Route to
+              </p>
               <p className="text-sm font-bold">{result.authority}</p>
             </div>
             <div>
-              <p className="text-[11px] font-semibold uppercase tracking-widest text-muted-foreground">Why</p>
+              <p className="text-[11px] font-semibold uppercase tracking-widest text-muted-foreground">
+                Why
+              </p>
               <p className="text-sm text-foreground">{result.reason}</p>
             </div>
             <Link

@@ -1,12 +1,26 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Link } from "@tanstack/react-router";
-import { Siren, Sparkles, FileText, Users, MapPin, Building2, Landmark, ShieldCheck, ArrowRight } from "lucide-react";
+import {
+  Siren,
+  Sparkles,
+  FileText,
+  Users,
+  MapPin,
+  Building2,
+  Landmark,
+  ShieldCheck,
+  ArrowRight,
+} from "lucide-react";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "ComplainKaro — File complaints fearlessly" },
-      { name: "description", content: "India's civic voice app. Emergency contacts, AI-triaged complaints, and a community feed where leaders respond." },
+      {
+        name: "description",
+        content:
+          "India's civic voice app. Emergency contacts, AI-triaged complaints, and a community feed where leaders respond.",
+      },
     ],
   }),
   component: Index,
@@ -23,7 +37,9 @@ function Index() {
           </div>
           <div>
             <h1 className="text-lg font-bold leading-none">ComplainKaro</h1>
-            <p className="text-[11px] text-muted-foreground">Aapki awaaz, hamari zimmedari</p>
+            <p className="text-[11px] text-muted-foreground">
+              Aapki awaaz, hamari zimmedari
+            </p>
           </div>
         </div>
         <div className="flex h-9 w-9 items-center justify-center rounded-full bg-muted text-sm font-semibold">
@@ -37,12 +53,15 @@ function Index() {
         style={{ background: "var(--gradient-saffron)" }}
       >
         <div className="absolute -right-8 -top-8 h-40 w-40 rounded-full bg-white/15 blur-2xl" />
-        <p className="text-xs font-semibold uppercase tracking-widest opacity-80">In an emergency?</p>
+        <p className="text-xs font-semibold uppercase tracking-widest opacity-80">
+          In an emergency?
+        </p>
         <h2 className="mt-1 text-2xl font-extrabold leading-tight">
           Help is one tap away.
         </h2>
         <p className="mt-2 max-w-[18rem] text-sm opacity-90">
-          Police, ambulance, fire, women & child helplines — all numbers, one screen.
+          Police, ambulance, fire, women & child helplines — all numbers, one
+          screen.
         </p>
         <Link
           to="/emergency"
@@ -62,7 +81,9 @@ function Index() {
             <Sparkles className="h-5 w-5" />
           </div>
           <h3 className="mt-3 text-sm font-bold">Quick Complain</h3>
-          <p className="text-xs text-muted-foreground">AI routes it to the right authority.</p>
+          <p className="text-xs text-muted-foreground">
+            AI routes it to the right authority.
+          </p>
         </Link>
         <Link
           to="/complain"
@@ -72,7 +93,9 @@ function Index() {
             <FileText className="h-5 w-5" />
           </div>
           <h3 className="mt-3 text-sm font-bold">File a Complaint</h3>
-          <p className="text-xs text-muted-foreground">Local, State or National level.</p>
+          <p className="text-xs text-muted-foreground">
+            Local, State or National level.
+          </p>
         </Link>
       </section>
 
@@ -80,22 +103,42 @@ function Index() {
       <section>
         <div className="mb-2 flex items-center justify-between px-1">
           <h3 className="text-sm font-bold">File by level</h3>
-          <Link to="/complain" className="flex items-center gap-1 text-xs font-semibold text-primary">
+          <Link
+            to="/complain"
+            className="flex items-center gap-1 text-xs font-semibold text-primary"
+          >
             View all <ArrowRight className="h-3 w-3" />
           </Link>
         </div>
         <div className="space-y-2">
           {[
-            { icon: MapPin, title: "Local", desc: "Sarpanch, ward officer, RWA", tone: "bg-primary/10 text-primary" },
-            { icon: Building2, title: "State", desc: "MLA, district collector", tone: "bg-accent/10 text-accent" },
-            { icon: Landmark, title: "Country", desc: "Central ministries, MP", tone: "bg-secondary/10 text-secondary" },
+            {
+              icon: MapPin,
+              title: "Local",
+              desc: "Sarpanch, ward officer, RWA",
+              tone: "bg-primary/10 text-primary",
+            },
+            {
+              icon: Building2,
+              title: "State",
+              desc: "MLA, district collector",
+              tone: "bg-accent/10 text-accent",
+            },
+            {
+              icon: Landmark,
+              title: "Country",
+              desc: "Central ministries, MP",
+              tone: "bg-secondary/10 text-secondary",
+            },
           ].map(({ icon: Icon, title, desc, tone }) => (
             <Link
               key={title}
               to="/complain"
               className="flex items-center gap-3 rounded-2xl border border-border bg-card p-3 transition-colors hover:bg-muted"
             >
-              <div className={`grid h-11 w-11 place-items-center rounded-xl ${tone}`}>
+              <div
+                className={`grid h-11 w-11 place-items-center rounded-xl ${tone}`}
+              >
                 <Icon className="h-5 w-5" />
               </div>
               <div className="flex-1">

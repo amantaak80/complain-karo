@@ -86,10 +86,21 @@
   --border: oklch(0.9 0.015 80);
   --input: oklch(0.93 0.015 80);
   --ring: oklch(0.74 0.17 55);
-  --gradient-tricolor: linear-gradient(135deg, oklch(0.74 0.17 55) 0%, oklch(1 0 0) 50%, oklch(0.55 0.16 150) 100%);
-  --gradient-saffron: linear-gradient(135deg, oklch(0.78 0.17 60), oklch(0.68 0.18 40));
-  --shadow-civic: 0 10px 30px -12px color-mix(in oklab, oklch(0.25 0.07 260) 30%, transparent);
-  --shadow-saffron: 0 10px 25px -10px color-mix(in oklab, oklch(0.74 0.17 55) 50%, transparent);
+  --gradient-tricolor: linear-gradient(
+    135deg,
+    oklch(0.74 0.17 55) 0%,
+    oklch(1 0 0) 50%,
+    oklch(0.55 0.16 150) 100%
+  );
+  --gradient-saffron: linear-gradient(
+    135deg,
+    oklch(0.78 0.17 60),
+    oklch(0.68 0.18 40)
+  );
+  --shadow-civic: 0 10px 30px -12px
+    color-mix(in oklab, oklch(0.25 0.07 260) 30%, transparent);
+  --shadow-saffron: 0 10px 25px -10px
+    color-mix(in oklab, oklch(0.74 0.17 55) 50%, transparent);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
